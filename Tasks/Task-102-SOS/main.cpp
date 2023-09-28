@@ -22,13 +22,13 @@ int main()
     {
         //On for 500ms
         greenLED = 1;
-        buzz.playTone("C");
+        buzz.playTone("C", Buzzer::HIGHER_OCTAVE);
         wait_us(WAIT_TIME_MS * 1000);  //500ms
 
 
         //Off for 500ms
         greenLED = 0;
-        buzz.playTone("C", Buzzer::HIGHER_OCTAVE);
+        buzz.playTone("C", Buzzer::LOWER_OCTAVE);
         wait_us(WAIT_TIME_MS * 1000);  //500ms
 
         //Pause
