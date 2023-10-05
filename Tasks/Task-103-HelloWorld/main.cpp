@@ -1,7 +1,7 @@
 #include "uop_msb.h"
 using namespace uop_msb;
 
-#define WAIT_TIME_MS 2000
+#define WAIT_TIME_MS 1000
 
 //Initialise the DigitalOut objects with a default value of 1
 DigitalOut ledGreen(LED1,1);
@@ -33,12 +33,14 @@ int main()
 
     // This is a variable (not an oject as it has no functions) that stores a whole number (integer) in memory
     // (I used the keyword volatile to force it to use memory... long story and one for later)
-    volatile int counter = 0;
+    volatile int counter = 9;
 
-    while (true)
+    while (counter < 15)
     {
         //Toggle the LED
         ledBlue = !ledBlue;
+        ledRed = !ledRed;
+        ledGreen = !ledGreen;
 
         //Add 1 to the counter "variable"
         counter = counter + 1;
@@ -49,4 +51,10 @@ int main()
         //Wait
         wait_us(WAIT_TIME_MS * 1000);
     }
+
+    ledRed = 1;
+    ledGreen = 1;
+    ledBlue = 1;
+
+    wait_us(osWaitForever);
 }
