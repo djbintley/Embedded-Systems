@@ -28,7 +28,8 @@ int main()
     int offdelay_ms;
     int parsed = scanf("%d", &delay_ms);
 
-    scanf("Enter the time you want the lights to stay on: %d", &offdelay_ms);
+    puts("Enter your chosen delay: ");
+    scanf("%d", &offdelay_ms);
     
     printf("You entered %d correct integer values. The value was %dms\n", parsed, delay_ms);
 
