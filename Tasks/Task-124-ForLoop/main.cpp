@@ -29,10 +29,12 @@ int main()
     while (true) {
 
         //For-Loop
-        for (int n=7; n>=0; n = n-2) {
+        for (int n=0; n<=count; n=n+1) {
             printf("n=%d\n", n);
-            leds = n;
-            wait_us(250000);
+            leds = pattern;
+            wait_us(delay * 1000);
+            leds = 0;
+            wait_us(delay * 1000);
         }
 
         //2s pause
