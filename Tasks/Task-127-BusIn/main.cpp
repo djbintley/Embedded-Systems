@@ -20,8 +20,6 @@ int main()
             //Spin in a loop
         }
 
-        redLED = !redLED;
-
         //Wait for noise to settle
         wait_us(10000);
 
@@ -32,6 +30,7 @@ int main()
         //Wait for noise to settle
         wait_us(10000);        
 
+        redLED = !redLED;
     }
 }
 
