@@ -60,6 +60,7 @@ int main()
              disp = count;
             }               
         }
+        
         // Did button A change?
         if (btnA_curr != btnA_prev) {
 
