@@ -15,18 +15,29 @@ Buzzer buzz;
 
 int main()
 {
-
+int state = 0;
+unsigned short potVal   = pot.read_u16();
+    if (potVal > 0x8000){
+        state = 1;
+    }
     while (true) {
         //Read Analog to Digital Converter values (16 bit)
         unsigned short potVal   = pot.read_u16();
         printf("Potentiometer: %X\n", potVal);
         
-        if (potVal > 0x8000) {
-            redLED = 1;
-            buzz.playTone("C");
+        if (state == 0) {
+            if (potVal > 0x9000){
+                state = 1;
+                redLED = 1;
+                buzz.playTone("C");
+            }
         } else {
-            redLED = 0;
-            buzz.rest();
+            if(potVal < 0x7000){
+                state = 0;
+                redLED = 0;
+                buzz.rest();
+            }
+
         }
 
         //Wait 0.25 seconds
