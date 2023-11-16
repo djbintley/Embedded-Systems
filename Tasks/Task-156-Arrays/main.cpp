@@ -16,15 +16,28 @@ Buzzer buzz;
 
 int main()
 {
-    unsigned short samples[100];
-
+    unsigned short samples[100] = {0};
+    float mean = 0;
+    enum {OFF=0, ON} state = OFF;
+    int count = 0;
+    int count2 = 1;
+    int total = 0;
+    
+    /*
     for (unsigned int m=0; m<100; m++) {
-        printf("%X ", samples[m]);
+        printf("%X \n", samples[m]);
     }
+    */
 
-    // Automatic headlamp 
     while (true) {
 
+        unsigned short ldrVal   = ldr.read_u16();
+        samples[count] = ldrVal;
+        total = total + samples[count];
+        total = total - samples[count2];
+        mean = total/100.0;
+
+        /*
         for (unsigned int m=0; m<100; m++) {
             unsigned short ldrVal   = ldr.read_u16();
             samples[m] = ldrVal;
@@ -32,12 +45,49 @@ int main()
         }
 
         // TASK a. Calculate the average value in samples
+        for (unsigned int m=0; m<100; m++) {
+            mean = mean + samples[m];
+        }
+        mean = mean/sizeof(samples);
+        */
 
         // TASK b. Display to 1dp
 
+        printf("mean = %5.1f\n", mean);
+        
         // TASK c. Switch green LED on when dark;
 
+        switch (state) {
+            case OFF:
+                if (mean > 4000) {
+                    state = ON;
+                    greenLED = 1;
+                    //buzz.playTone("G#", Buzzer::HIGHER_OCTAVE);
+                    
+                }
+                break;
+
+            case ON:
+                if (mean < 3000) {
+                    state = OFF;
+                    greenLED = 0;
+                    //buzz.rest();
+                }
+                break;
+        }
+
+        count += 1;
+        if (count == 100){
+            count = 0;
+        }
+
+        count2 += 1;
+        if (count2 == 100){
+            count2 = 0;
+        wait_us(10000);
+        }
+
+
+        
     }  
 }
-
-

@@ -29,7 +29,7 @@ unsigned short potVal   = pot.read_u16();
             if (potVal > 0x9000){
                 state = 1;
                 redLED = 1;
-                buzz.playTone("C");
+                buzz.playTone("G", Buzzer::HIGHER_OCTAVE);
             }
         } else {
             if(potVal < 0x7000){
