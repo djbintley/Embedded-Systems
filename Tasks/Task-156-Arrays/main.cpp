@@ -59,16 +59,16 @@ int main()
 
         switch (state) {
             case OFF:
-                if (mean > 4000) {
+                if (mean > 6000) {
                     state = ON;
                     greenLED = 1;
-                    //buzz.playTone("G#", Buzzer::HIGHER_OCTAVE);
+                    buzz.playTone("G#", Buzzer::HIGHER_OCTAVE);
                     
                 }
                 break;
 
             case ON:
-                if (mean < 3000) {
+                if (mean < 5000) {
                     state = OFF;
                     greenLED = 0;
                     //buzz.rest();
@@ -84,7 +84,7 @@ int main()
         count2 += 1;
         if (count2 == 100){
             count2 = 0;
-        wait_us(10000);
+        wait_us(7000);
         }
 
 

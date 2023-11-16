@@ -22,7 +22,7 @@ int main()
     char str1[] = "Welcome to ELEC143";
 
     //Displaying a string with printf
-    printf("%s\n", str1);
+    printf("\n%s\n", str1);
 
     //Viewing a string as an array of characters
     for (unsigned int n=0; n<sizeof(str1); n++) {
@@ -40,7 +40,7 @@ int main()
 
     //3. Copying strings with strcpy
     char str3[16];
-    strcpy(str3, "Hello");
+    strncpy(str3, "Hello", 6);
     printf("%s\n", str3);
     printf("Size: %d\n", sizeof(str3));
     printf("String length: %d\n", strlen(str3));
@@ -48,7 +48,7 @@ int main()
     //strcpy and Constant strings
     const char str4[] = "The moon is made of cheese";
     char str5[64];
-    strcpy(str5, str4);
+    strncpy(str5, str4, sizeof(str4));
     printf("%s\n", str5);
     printf("Size: %d\n", sizeof(str5));
     printf("String length: %d\n", strlen(str5));   

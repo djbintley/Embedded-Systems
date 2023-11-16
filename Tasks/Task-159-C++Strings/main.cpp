@@ -12,7 +12,7 @@ int main()
     int x = 1234;
 
     cout << "Hello ";
-    cout << "World:";
+    cout << "World: ";
     cout << x << endl;
 
     string str1 = "Hello World: " + to_string(x);
