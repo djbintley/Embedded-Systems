@@ -13,7 +13,7 @@ DigitalOut greenLED(TRAF_GRN1_PIN);
 //Analogue Inputs
 AnalogIn pot(AN_POT_PIN);
 Buzzer buzz;
-PwmOut buzzy(PB_13);
+PwmOut buzzy(PB_13); 
 
 //BUZZ BUZZ BUZZ
 void coolBuzz(const char *noteStr)
