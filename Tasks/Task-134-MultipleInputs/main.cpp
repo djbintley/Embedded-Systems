@@ -65,7 +65,7 @@ int main()
         }
 
         // Slow it down a bit (and debounce the switches)
-        wait_us(250000);  
+        wait_us(100000);  
     }
 }
 

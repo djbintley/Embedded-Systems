@@ -8,14 +8,14 @@
 // Objects
 //BusOut leds(TRAF_RED1_PIN, TRAF_YEL1_PIN, TRAF_GRN1_PIN);
 PortOut leds(PortC, LEDMASK);
+PortOut onboardleds(PortB, 0b100000010000001);
 
 int main()
 {
     while (true) {
-        leds = 0;   //Binary 000
+        leds = leds ^ LEDMASK;
+        onboardleds = onboardleds ^ 0b100000010000001;
         wait_us(500000);
-        leds = 0xFF;   //Binary 11111111
-        wait_us(500000);    
     }
 }
 
