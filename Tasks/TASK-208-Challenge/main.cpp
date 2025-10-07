@@ -12,12 +12,11 @@ DigitalOut ledGrn(TRAF_GRN1_PIN);
 
 // Timers (modified version from Timer)
 TimerCompat tmr_flash;
+TimerCompat tmr_sw2;
+TimerCompat tmr_sw3;
 
-// THE CODE BELOW IS NOT A SOLUTION
-//
-// IT IS FUNDAMENTALLY FLAWED (AND INCOMPLETE)
-//
-//
+char pressed1;
+char pressed2;
 
 int main()
 {
@@ -25,19 +24,49 @@ int main()
     tmr_flash.start();
 
     while (true) {
+        if (pressed1 == 0){
+            if (SW2 == 1){
+                tmr_sw2.reset();
+                wait_us(20000);
+                if(SW2 == 1){
+                    pressed1 = 1;
+                }
+            }
+        }else{
+            if (SW2 == 0){
+                tmr_sw2.reset();
+                wait_us(20000);
+                if (SW2 == 0){
+                    ledRed = !ledRed;
+                    pressed1 = 0;
+                }
+            }
+        }
 
-        //Wait for switch press and release (by BLOCKING)
-        while (SW2.read() == 0);
-        ledRed = !ledRed;
-        wait_us(300000);
+        if (pressed2 == 0){
+            if (SW3 == 1){
+                tmr_sw3.reset();
+                wait_us(20000);
+                if(SW3 == 1){
+                    pressed2 = 1;
+                }
+            }
+        }else{
+            if (SW3 == 0){
+                tmr_sw3.reset();
+                wait_us(20000);
+                if (SW3 == 0){
+                    ledGrn = !ledGrn;
+                    pressed2 = 0;
+                }
+            }
+        }         
 
-        while (SW2.read() == 1);
-        wait_us(300000);        
-
-        //Toggle Yellow LED
-        ledYel = !ledYel;
-        while (tmr_flash.read_ms() < 500);
-        tmr_flash.reset();
+        //Toggle Yellow LED        
+        if (tmr_flash.read_ms() > 500){
+            tmr_flash.reset();
+            ledYel = !ledYel;
+        }
     }
 }
 
